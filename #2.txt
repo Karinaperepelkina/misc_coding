@@ -1,0 +1,55 @@
+# There are some files in one folder. In each folder we have length measurement of a supply of piles.
+# Input.txt file contains typical pile length and tolerance of the pile length. Find defect percentage.
+# Output.txt file shows supply name, number of piles and defect percentage for each supply.
+
+inpt = []
+with open ('input.txt', 'r') as f:
+        for lines in f:
+            line = int(lines.strip())
+            inpt.append(line)
+        TypicalL = inpt[0]
+        print ( TypicalL)
+        tolerance = inpt[1]
+        print(tolerance)
+
+def PercentageOfDefect():
+    import os
+    m =[]
+    numPiles = []
+    Supply_name = []
+    for root, dirs, files in os.walk('#2_input'):
+        for name in files:
+            full_path = os.path.join(root, name)
+            print(full_path)
+            
+            a = []
+            with open (full_path, 'r') as f:
+                for lines in f:
+                    line = int(lines.strip())
+                    a.append(line)
+                    print(a)
+                for x in a:
+                    b = [x - TypicalL for x in a]
+                    CountDefect = 0  
+                    for i in b:
+                        if (i > tolerance or i < -tolerance):
+                            CountDefect += 1
+                        else:
+                            CountDefect == 0
+                print(CountDefect)
+                
+                pdef = (CountDefect * 100)/len(a)
+                m.append(int(pdef))
+                numPiles.append(len(a))
+                Supply_name.append(os.path.basename(name))
+                
+                print(Supply_name)
+                print(m)
+                
+    return (Supply_name[0], numPiles[0], 'ps.', m[0], '%'), (Supply_name[1], numPiles[1], 'ps.', m[1], '%')
+
+
+with open('output.txt', 'w') as output:
+    print(PercentageOfDefect(), file=output)
+
+

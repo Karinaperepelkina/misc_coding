@@ -1,0 +1,11 @@
+#Sum numbers in line
+
+def Sum_Line():
+    total = 0
+    with open ('input.txt', 'r') as f:
+        for line in f.readlines():
+            total += int(line)
+    return total
+    
+with open('output.txt', 'w') as output:
+    print('Sum of this list is: ', Sum_Line(), file=output)

@@ -1,0 +1,18 @@
+# Find if line is palindrom
+
+    
+def findPalindrome(file):
+    pal = {}
+    for lines in file.readlines():
+        line1 = lines.lower().replace(',','').replace('.','').replace("'",'').replace(' ','').strip()
+        if line1 == line1[::-1]:
+            pal[lines] = '- is Palindrome'
+    Palindromes = pal.items()
+    for k,v in Palindromes:
+        print (k, v, '\n\n')
+    return pal
+
+
+file = open('#9_Palindrome.txt', 'r')
+
+print(findPalindrome(file))

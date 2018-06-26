@@ -1,0 +1,13 @@
+# Providing the COLUMN name in Excel when given the colunn number
+
+def numToExcel(col):
+    excelCol = str()
+    div = col
+    while div:
+        (div, mod) = divmod(div-1, 26)
+        excelCol = chr(mod + 65) + excelCol
+    return excelCol
+
+col = int(input('Excel column № = '))
+with open('output.txt', 'w') as output:
+    print('Name fo Excel column: ', numToExcel(col), file=output)

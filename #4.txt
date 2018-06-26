@@ -1,0 +1,17 @@
+   # Normalised array 
+
+import numpy as np
+
+def normalize(a):
+    amax = np.amax(a)
+    if amax == 0:
+            return a
+    norm = 1.0 / amax
+    anorm = []
+    for i in a:
+        n = round((i * norm),1)
+        anorm.append(n)
+    return anorm
+
+a = [1,2,3,4,5,6,7,8,9,10]
+print (normalize(a))

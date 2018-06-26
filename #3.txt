@@ -1,0 +1,43 @@
+# Runs matrix in spiral order 
+
+def leyerTopRight(matrix):
+    top = matrix.pop(0)
+    right = []
+    for i in range (0, len(matrix)):
+        e = matrix[i].pop()
+        right.append(e)
+    return top + right
+
+def leyerBottomLeft(matrix):
+    bottom = matrix.pop()[::-1]
+    left = []
+    for i in range(0, len(matrix)):
+        e = matrix[i].pop(0)
+        left.append(e)
+    return bottom + left[::-1]
+
+def spiral(matrix):
+    spir = []
+    while len(matrix) > 0:
+        if len(matrix) ==1:
+            spir += matrix[0]
+            break
+        tr = leyerTopRight(matrix)
+        spir += tr
+        bl = leyerBottomLeft(matrix)
+        spir += bl
+    return spir
+
+M = int(input('M = '))
+N = int(input('N = '))
+L = M*N
+Lconst = L+1
+
+import numpy as np
+matrix = np.arange(1,Lconst).reshape(M,N)
+matrix = np.array(matrix).tolist()
+
+
+with open('output.txt', 'w') as output:
+    print(spiral(matrix), file=output)
+

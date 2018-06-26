@@ -1,0 +1,13 @@
+   #  Converts Excel column to column number
+
+def col_to_num(col_str):
+    expn = 0
+    col_num = 0
+    for char in reversed(col_str):
+        col_num += (ord(char) - ord('A') + 1) * (26 ** expn)
+        expn += 1
+
+    return col_num
+
+
+print (col_to_num('BM'))

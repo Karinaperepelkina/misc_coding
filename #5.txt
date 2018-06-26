@@ -1,0 +1,82 @@
+  # Creates a class for triangle, returns angels
+  
+
+        
+class Triangle_ABC(object):
+
+    def __init__(self, AB=0, BC=0, AC=0):
+        self.AB = AB
+        self.BC = BC
+        self.AC = AC
+
+    def setAB( self, AB ):
+        self.AB = AB
+
+    def getAB(self ):
+        return self.AB
+
+    def setBC( self, BC ):
+        self.BC = BC
+
+    def getBC(self ):
+        return self.BC
+
+    def setAC( self, AC ):
+        self.AC = AC
+
+    def getAC(self ):
+        return self.AC
+    
+
+    def setAngelA( self ):
+        self.A = A
+
+    def setAngelB( self ):
+        self.B = B
+
+    def setAngelC( self ):
+        self.C = C
+
+
+    
+
+    def checkIfTriangle( self ):
+        if (self.AB + self.BC <= self.AC) or (self.AB + self.AC <= self.BC) or (self.BC + self.AC <= self.AB):
+            return False
+        else:
+            return True
+
+        
+
+    def getAngel_A( self ):
+        import math
+        from math import acos, degrees
+        A = degrees(acos((self.BC**2 + self.AC**2 - self.AB**2)/(2.0 * self.BC * self.AC)))
+        return round(A)
+
+    def getAngel_B( self ):
+        import math
+        from math import acos, degrees
+        B = degrees(acos((self.AB**2 + self.AC**2 - self.BC**2)/(2.0 * self.AB * self.AC)))
+        return round(B)
+
+    def getAngel_C( self ):
+        import math
+        from math import acos, degrees
+        C = degrees(acos((self.BC**2 + self.AB**2 - self.AC**2)/(2.0 * self.BC * self.AB)))
+        return round(C)
+
+    
+    
+t1 = Triangle_ABC()
+t1.setAB(3)
+t1.setBC(5)
+t1.setAC(6)
+
+
+with open('output.txt', 'w') as output:
+    print('This is triangle: ', t1.checkIfTriangle(), file=output)
+    print ('Angel BAC = ', t1.getAngel_A(), '°',  file=output)
+    print('Angel ABC = ', t1.getAngel_B(), '°', file=output)
+    print('Angel ACB = ', t1.getAngel_C(), '°', file=output)
+

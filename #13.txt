@@ -1,0 +1,21 @@
+# Finds an unpaired number
+ 
+def FindAllBaks(a):
+    seen = set()
+    seen_add = seen.add
+    seen_twice = set(x for x in a if x in seen or seen_add(x))
+    return list(seen_twice)
+
+def FindLostBaks(a):
+    f = list(set(a).difference(FindAllBaks(a)))
+    return f
+
+
+file =  open('input.txt', 'r')
+a = file.read()
+with open ('output.txt', 'w') as output:
+    print('You lost: ', FindLostBaks(a), file=output)
+        
+
+
+
